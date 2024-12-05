@@ -1,6 +1,7 @@
 body {
     margin: 0;
-    padding-top: 0px;/* Ajusta según el tamaño del encabezado*/
+    padding-top: 0px;
+    /* Ajusta según el tamaño del encabezado*/
 }
 
 html {
@@ -8,35 +9,21 @@ html {
 }
 
 /*Header ****************************/
-header {
-    /* position: fixed;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px 20px;
-    background-color: #0B1522;
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; */
-    position: fixed; 
+
+
+/* Estilos para el menú de hamburguesa */
+.navbar {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 20px;
+    padding: 10px 20px;
     background-color: #0B1522;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-    z-index: 1000; /* Ajusta según sea necesario*/
-}
-
-nav:first-of-type {
-    order: 1;
-    /*Primer nav logo, a la derecha*/
-}
-
-nav:last-of-type {
-    order: 2;
-    /*Mantiene el segundo nav menu, a la izquierda*/
+    z-index: 1000;
 }
 
 #logo {
@@ -44,23 +31,33 @@ nav:last-of-type {
     font-weight: bold;
     color: #73DF73;
 }
+.menu-toggle {
+    display: none; /* Inicialmente oculto en pantallas grandes */
+    cursor: pointer;
+}
 
-ul {
+.menu-toggle i {
+    font-size: 24px;
+    color: white;
+}
+
+
+ul{
     list-style-type: none;
     margin: 0;
     padding: 0;
     display: flex;
     gap: 20px;
-    /*espacio entre los elementos del menu*/
 }
 
 li {
+    /* margin-left: 20px; */
     display: inline;
 }
 
-a {
+ a {
     text-decoration: none;
-    color: #fff;
+    color: white;
     font-size: 25px;
     transition: all 0.30s ease;
 }
@@ -68,10 +65,44 @@ a {
 a:hover {
     color: #73DF73;
     text-decoration: underline;
-    /*subraya el texto*/
     text-underline-offset: 4px;
     transform: translateY(-50px);
-    /*movimiento hacia arriba*/
+}
+
+/*Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;  /*Oculta el menú en pantallas pequeñas */
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.8);
+        position: absolute;
+        top: 50px;
+        left: 0;
+        z-index: 1000;
+    }
+
+    .nav-menu.active {
+        display: flex;/*  Muestra el menú al hacer clic en el icono de hamburguesa */
+        /* height: calc(100 vh - 50px); */
+        height: 100vh; /*Para moficiar el tamaño del menu al abrir*/
+    }
+
+    .menu-toggle {
+        display: block; /* Muestra el icono de hamburguesa en pantallas pequeñas */
+        cursor: pointer;
+    }
+}
+
+@media (min-width: 769px){
+    .menu-toggle{
+        display: none;
+    }
+
+    .nav-menu{
+        display: flex;
+    }
 }
 
 /*Slider *******************/
@@ -132,13 +163,14 @@ a:hover {
     justify-items: center;
     /*Centra card horizontalmente*/
 
-  
+
 }
 
 .card {
     margin: 5px;
     border-width: 3px;
     border-color: #0B1522;
+    transition: all 0.3 ease;
 }
 
 .card-body {
@@ -148,20 +180,27 @@ a:hover {
     font-size: 20px;
 }
 
+.card:hover {
+    /* color: #4ada1f;
+    background-color: #4ada1f; */
+    transform: translate(5px, -5px);
+    box-shadow: 0 4px 8px 2px rgba(74, 218, 31, 0.9);
+}
+
 /*Nuestras Especialidades - Acordeon ***************************************/
 
 #especialidades h2 {
     /* margin-top: 5%; */
     text-align: center;
     font-family: "Roboto" sans-serif;
-    font-weight: 700; /* Bold */
+    font-weight: 700;
+    /* Bold */
     color: #008b8b;
     font-size: 40px;
 
 }
 
 .accordion {
-
     /* max-width: 350px;/*ancho del acordeón*/
     max-width: 600px;
     /*ancho del acordeón*/
@@ -179,8 +218,6 @@ a:hover {
     color: #ffffff !important;
     /* Color de texto predeterminado */
     background-color: #4ada1f !important;
-    /* Color de fondo predeterminado, importante para priorizar sobre Bootstrap */
-    /* border: 1px solid #dee2e6; */
     font-size: 25px;
     border-radius: 5px;
     padding: 10px 20px;
@@ -191,19 +228,86 @@ a:hover {
 
 .accordion-body {
     background-color: #0B1522;
-    /*Color de fondo del cuerpo del acordeón*/
-    /* background-color: rgba(0, 255, 34, 0.67); */
-    /*color: rgb(0, 0, 0); /* Color del texto del cuerpo del acordeón */
     color: white;
     font-size: 18px;
 }
 
-/*Nosotros ******************/
+/*TURNOS ******************************/
+#turnos {
+    text-align: center;
+    margin-bottom: 4%;
+}
+
+#turnos h2 {
+    color: #008b8b;
+    font-family: "Roboto" sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    /* Bold */
+    margin-top: 50px;
+}
+
+.reserva {
+    background-color: #f0f0f0;
+    padding: 40px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+}
+
+.reserva h2 {
+    color: #0B1522;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.reserva p {
+    color: #333;
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.reserva-button {
+    background-color: #4ada1f;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-bottom: 25px
+}
+
+.reserva-button:hover {
+    background-color: #3cb917;
+    transform: translateY(-5px);
+}
+
+.reserva-button.cancelar {
+    background-color: #d9534f;
+}
+
+.reserva-button.cancelar:hover {
+    background-color: #c9302c;
+}
+
+.reserva-button.consultar {
+    background-color: #5bc0de;
+}
+
+.reserva-button.consultar:hover {
+    background-color: #31b0d5;
+}
+
+/*Nosotros ***************************/
 #nosotros h2 {
     margin-top: 5%;
     text-align: center;
     font-family: "Roboto" sans-serif;
-    font-weight: 700; /* Bold */
+    font-weight: 700;
+    /* Bold */
     color: #008b8b;
     font-size: 40px;
 
@@ -238,33 +342,40 @@ a:hover {
     color: white;
     text-align: center;
 }
+
 #contactos h2 {
     text-align: center;
     font-family: "Roboto" sans-serif;
-    font-weight: 700; /* Bold */
+    font-weight: 700;
+    /* Bold */
     color: #008b8b;
     font-size: 40px;
 }
+
 #contactos .icono {
     font-size: 2em;
     margin-bottom: 10px;
     color: #73DF73;
 }
+
 #contactos p {
     color: white;
     font-size: 20px;
 }
+
 #contactos .row {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 }
+
 #contactos .col {
     flex-basis: 45%;
     margin: 20px;
     text-align: center;
 }
+
 #contactos iframe {
     width: 90%;
     height: 450px;
